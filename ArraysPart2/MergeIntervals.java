@@ -49,3 +49,28 @@ public class Solution {
         return mergedIntervals;
     }
 }
+
+
+// Leetcode - short and better 
+
+class Solution {
+public int[][] merge(int[][] intervals) {
+    Arrays.sort(intervals,(a,b) -> Integer.compare(a[0],b[0])); // sort the array with start of interval
+    
+    ArrayList<int[]> list = new ArrayList<>();
+    
+    for(int[] interval : intervals){
+        if(list.size() == 0){
+            list.add(interval);
+        }else{
+            int[] prevInterval = list.get(list.size() - 1);
+            if(prevInterval[1] >= interval[0]){  // if it is overlapping update the end 
+                 prevInterval[1] = Math.max(prevInterval[1],interval[1]);
+            }else{
+                list.add(interval); // if not add 
+            }
+        }
+    }
+    return list.toArray(new int[list.size()][]);
+    }
+}
