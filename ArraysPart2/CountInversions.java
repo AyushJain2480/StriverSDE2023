@@ -1,3 +1,4 @@
+// Brute Force 
 import java.util.* ;
 import java.io.*; 
 public class CountInversions{
@@ -13,3 +14,5 @@ public class CountInversions{
         return c;
     }
 }
+
+// Count Inversion using merge Sort
