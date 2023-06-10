@@ -29,3 +29,21 @@ public class Solution {
 
 
 // optimised approach
+static boolean searchMatrix(ArrayList<ArrayList<Integer>> mat, int target) {
+        int m = mat.get(0).size();
+        int n = mat.size();
+
+        int i = 0;
+        int j = m - 1;
+
+        while(i >= 0 && i < n && j >= 0 && j < m){
+            if(mat.get(i).get(j) > target){
+                j--;
+            }else if(mat.get(i).get(j) < target){
+                i++;
+            }else if(mat.get(i).get(j) == target){
+                return true;
+            }
+        }
+        return false;
+    }
