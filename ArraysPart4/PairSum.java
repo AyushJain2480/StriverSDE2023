@@ -39,3 +39,36 @@ public class Solution{
         return list;
     }
 }
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Comparator;
+public class Solution {
+    public static List<int[]> pairSum(int[] nums, int s) {
+        List<int[]> list = new ArrayList<>();
+        Map<Integer, Integer> mp = new HashMap<>();
+
+        for (int i : nums) {
+            int diff = s - i;
+            if (mp.containsKey(diff)) {
+                for (int k = 0; k < mp.get(diff); k++) {
+                    list.add(new int[]{Math.min(i, diff), Math.max(i, diff)});
+                }
+            }
+            mp.put(i, mp.getOrDefault(i, 0) + 1);
+        }
+        list.sort((a,b) -> {
+           if(a[0] != b[0]){
+               return Integer.compare(a[0],b[0]);
+           }else{
+               return Integer.compare(a[1],b[1]);
+           }
+        }); 
+
+        return list;
+    }
+}
+
