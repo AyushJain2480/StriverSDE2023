@@ -19,3 +19,37 @@ public class Solution {
 		return max;
 	}
 }
+
+
+// optimised approach 
+
+
+import java.io.*;
+import java.util.* ;
+
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static int LongestSubsetWithZeroSum(ArrayList<Integer> a) {
+		Map<Integer,Integer>map=new HashMap<>();
+		int maxi = 0;
+		int sum =0;
+
+		for (int i = 0; i<a.size(); i++){
+			sum+=a.get(i);
+			if (sum==0){
+				maxi= i+1;
+			}
+			else {
+				if (map.containsKey(sum)){
+					maxi= Math.max(maxi, i- map.get(sum));
+				}
+				else {
+					map.put(sum,i);
+				}
+			}
+		}
+		return maxi;
+	}
+}
