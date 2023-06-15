@@ -53,3 +53,28 @@ public class Solution {
        }
        return dummy.next;
     }
+
+
+// recursive solution O(m + n)
+class Solution{ 
+public ListNode mergeTwoLists(ListNode l1 , ListNode l2){
+    // base case 
+    // obv if 1 list is null we have to return the second list 
+    if(l1 == null){
+        return l2;
+    }
+    if(l2 == null){
+        return l1;
+    }
+    if(l1.val < l2.val){
+        // becoz we want sorted list so we will select the smaller one
+        // Have faith that this function will give me a sorted list for further elements
+        l1.next = mergeTwoLists(l1.next,l2);
+        return l1;
+    }
+        // means l2 is smaller
+        // same have faith in recursion that it will return the sorted list for further elements
+        l2.next = mergeTwoLists(l1,l2.next);
+        return l2;
+}
+}
