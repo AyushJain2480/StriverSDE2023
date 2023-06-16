@@ -30,3 +30,15 @@ public class Solution {
         return res.child;
     }
 }
+
+
+// WIthout recursion 
+public static Node flattenLinkedList(Node head) {
+        Node h1 = head;
+        Node h2 = head.next;
+        while(h2 != null){
+          h1 = mergeTwoLists(h1, h2);
+          h2 = h2.next;
+        }
+        return h1;
+    }
