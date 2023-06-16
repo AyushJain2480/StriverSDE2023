@@ -1,3 +1,4 @@
 # StriverSDE2023
+![maxresdefault (1)](https://github.com/AyushJain2480/StriverSDE2023/assets/96828089/37adbefe-3436-4a78-b28e-ad50524ce401)
 
-<img width="731" alt="ninja" src="https://github.com/AyushJain2480/StriverSDE2023/assets/96828089/76ae7111-7ba2-40ac-aa86-2571dc45aea3">
+
