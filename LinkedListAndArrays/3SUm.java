@@ -5,7 +5,7 @@
 // For 10^5 testcases we can apply sorting mean it can accept the O(Nlogn) solution
 HashSet<String> set = new HashSet<>();
         Arrays.sort(nums);
-        List<List<Integer>> res = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
         int n = nums.length;
         for(int i = 0; i < n; i++){
            int j = i + 1;
