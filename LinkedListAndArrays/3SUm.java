@@ -32,4 +32,40 @@ HashSet<String> set = new HashSet<>();
         }
         return res;
 
-// 
+// accepted solution without hashset
+
+
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+public static ArrayList<ArrayList<Integer>> findTriplets(int[] nums, int n, int target)  {
+        Arrays.sort(nums);
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        for(int i = 0; i < n - 2; i++){
+           if(i == 0 || i > 0 && nums[i] != nums[i - 1]){  // For avoiding duplicates
+           int j = i + 1;
+           int k = n - 1;
+           while(j < k){
+               int sum = nums[i] + nums[j] + nums[k];
+               if(sum == target){
+                    ArrayList<Integer> triplet = new ArrayList<>();
+                    triplet.add(nums[i]);
+                    triplet.add(nums[j]);
+                    triplet.add(nums[k]);
+                    res.add(triplet);
+                   while(j < k && nums[j] == nums[j + 1]) j++; // For avoiding duplicates
+                   while(j < k && nums[k] == nums[k - 1]) k--;
+                   j++;k--;
+               }else if(sum < target){
+                   j++;
+               }else
+                   k--;
+           }
+           }
+        }
+        return res;
+}
+}
+
