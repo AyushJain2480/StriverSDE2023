@@ -1,6 +1,5 @@
 
 // 1st variation
-// This is the 1st variation of meeting rooms and question is 
 // To find whether it is possible to attend all the meetings or not.
 import java.util.ArrayList;
 import java.util.Arrays;
