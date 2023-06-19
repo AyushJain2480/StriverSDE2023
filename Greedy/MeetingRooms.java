@@ -48,4 +48,40 @@ public class Solution {
     }
 }
 
+// SOlution of this Question not an easy question for sure lol
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+       static class MeetingData {
+        int start;
+        int end;
+        int pos;
+
+        MeetingData(int start, int end, int pos) {
+            this.start = start;
+            this.end = end;
+            this.pos = pos;
+        }}
+    public static List<Integer> maximumMeetings(int[] start, int[] end) {        
+        List<MeetingData> meetings = new ArrayList<>();
+        for (int i = 0; i < start.length; i++) {
+            meetings.add(new MeetingData(start[i], end[i], i + 1));
+        }
+
+        meetings.sort(Comparator.comparingInt((MeetingData m) -> m.end)
+                                .thenComparingInt(m -> m.pos));
+
+        List<Integer> answer = new ArrayList<>();
+        answer.add(meetings.get(0).pos);
+        int limit = meetings.get(0).end;
+
+        for (int i = 1; i < start.length; i++) {
+            if (meetings.get(i).start > limit) {
+                limit = meetings.get(i).end;
+                answer.add(meetings.get(i).pos);
+            }
+        }
+        return answer;
+    }
+}
 
