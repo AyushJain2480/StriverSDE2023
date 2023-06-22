@@ -66,3 +66,40 @@ class Solution {
         }
     }
 }
+
+
+// Subsets of an array  - pepcoding using bits
+
+import java.util.*;
+// Subsets of An array
+public class Main
+{
+  public static void main (String[]args)
+  {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    int[] arr = new int[n];
+    for (int i = 0; i < n; i++)
+    {
+    	arr[i] = sc.nextInt();
+    }
+    // total subsets = 2^n
+    int limit = (int)Math.pow(2 , arr.length);
+    for(int i = 0; i < limit; i++){
+        // convert i to binary and use 0's and 1's
+        String set = "";
+        int k = i;
+        for(int j = arr.length - 1; j >= 0; j--){
+            int bit = k % 2;
+            k = k / 2;
+            
+            if(bit == 0){
+                set = "_\t" + set;
+            }else{
+                set = arr[j] + "\t" + set;
+            }
+        }
+        System.out.println(set);
+    }
+  }
+}
