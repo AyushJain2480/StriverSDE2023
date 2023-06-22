@@ -65,32 +65,32 @@ class Solution {
     }
 }
 
+// Optimised and accepted solution of COmbination Sum II  -- TC - O(2^n) * k
 
-import java.util.*;
-
-public class Solution {
-    public static ArrayList<ArrayList<Integer>> combinationSum2(ArrayList<Integer> arr, int n, int target) {
-        ArrayList<ArrayList<Integer>> ansList = new ArrayList<>();
-        // Convert the ArrayList to an array for sorting
-        Integer[] nums = arr.toArray(new Integer[0]);
-        Arrays.sort(nums);
-        helper(0, nums, new ArrayList<>(), target, ansList);
-        return ansList;
+class Solution {
+    
+    public void f(int ind, int[] arr, int target,List<List<Integer>> ans ,List<Integer> ds){
+         if(target == 0){
+             ans.add(new ArrayList<>(ds));
+             return;
+         }
+        
+         for(int i = ind; i < arr.length; i++){
+             
+             if(i > ind && arr[i] == arr[i - 1])continue;
+             
+             if(arr[i] <= target){
+                 ds.add(arr[i]);
+                 f(i + 1, arr, target - arr[i], ans, ds);
+                 ds.remove(ds.size() - 1);
+             }
+         }
     }
     
-    public static void helper(int ind, Integer[] nums, ArrayList<Integer> ds, int target, ArrayList<ArrayList<Integer>> ansList) {
-        if (target < 0)
-            return;
-        if (target == 0)
-            ansList.add(new ArrayList<>(ds));
-       
-        for (int i = ind; i < nums.length; i++) {
-            if (i != ind && nums[i] == nums[i - 1])
-                continue;
-            
-            ds.add(nums[i]);
-            helper(i + 1, nums, ds, target - nums[i], ansList);
-            ds.remove(ds.size() - 1);
-        }
+    public List<List<Integer>> combinationSum2(int[] arr, int target) {
+       List<List<Integer>> ans = new ArrayList<>();
+       Arrays.sort(arr);//  becoz we need sorted combinations
+       f(0,arr,target,ans,new ArrayList<Integer>()); 
+       return ans;
     }
 }
