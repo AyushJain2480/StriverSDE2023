@@ -41,7 +41,6 @@ public class Solution {
     }
 
     public static void f(int i, int sum, int[] num, ArrayList<Integer> list) {
-        try{
         // base case
         if (i == num.length) {
             list.add(sum); // add the subset sum into the list;
@@ -51,8 +50,5 @@ public class Solution {
         f(i + 1, sum + num[i], num, list);
         // right recursion
         f(i + 1, sum, num, list);
-        }catch(NullPointerException e){
-            e.printStackTrace();
-        }
     }
 }
