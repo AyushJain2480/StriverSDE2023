@@ -28,3 +28,33 @@ class Solution {
         return ans;
     }
 }
+
+// coding ninjas permutations of string using extra space of stringBuilder
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static List<String> findPermutations(String s) {
+        List<String> ans = new ArrayList<>();
+        f(s,ans,new StringBuilder(),new boolean[s.length()]);
+        return ans;        
+    }
+
+    static void f(String s, List<String> ans, StringBuilder sb, boolean[] map){
+          
+          if(sb.length() == s.length()){
+              ans.add(sb.toString());
+              return;
+          }
+
+          for(int i = 0; i < s.length(); i++){
+            if(!map[i]){
+               map[i] = true;
+               sb.append(s.charAt(i));
+               f(s, ans, sb, map);
+               map[i] = false;
+               sb.deleteCharAt(sb.length() - 1);
+            }
+          }
+    }    
+}
