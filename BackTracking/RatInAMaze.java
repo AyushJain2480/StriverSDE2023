@@ -30,3 +30,53 @@ class Solution {
         return ans;
     }
 }
+
+
+
+import java.util.ArrayList;
+
+public class Solution {
+    private static final int[] di = {1, 0, 0, -1}; // Down, Right, Left, Up
+    private static final int[] dj = {0, 1, -1, 0};
+
+    public static ArrayList<ArrayList<Integer>> ratInAMaze(int[][] maze, int n) {
+        ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+        if (maze[0][0] == 0) {
+            return list;
+        }
+        int[][] path = new int[n][n];
+        allPath(maze, n, path, list, 0, 0);
+        return list;
+    }
+
+    private static void allPath(int[][] maze, int n, int[][] path, ArrayList<ArrayList<Integer>> list, int row, int col) {
+        path[row][col] = 1;
+        if (row == n - 1 && col == n - 1) {
+            ArrayList<Integer> ans = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    ans.add(path[i][j]);
+                }
+            }
+            list.add(ans);
+            path[row][col] = 0;
+            return;
+        }
+
+        for (int d = 0; d < 4; d++) {
+            int nextRow = row + di[d];
+            int nextCol = col + dj[d];
+            if (pathIsPossible(nextRow, nextCol, maze, path)) {
+                allPath(maze, n, path, list, nextRow, nextCol);
+            }
+        }
+
+        path[row][col] = 0;
+    }
+
+    private static boolean pathIsPossible(int row, int col, int[][] maze, int[][] path) {
+        int n = maze.length;
+        return row >= 0 && row < n && col >= 0 && col < n && maze[row][col] == 1 && path[row][col] == 0;
+    }
+}
+
