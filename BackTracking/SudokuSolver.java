@@ -42,6 +42,30 @@ class Solution {
     }
 }
 
+// Easy way - note here we have to only check wheather the available sudoku is correct not fully solved its fine 
+// It is simply checking 9          9 in the same row if there are same element it will return false or in the same col or in the same box that's it as simple.
+class Solution {
+   public boolean isValidSudoku(char[][] board) {
+    Set<String> seen = new HashSet<>();
+
+    for (int i = 0; i < 9; ++i) {
+        for (int j = 0; j < 9; ++j) {
+            char number = board[i][j];
+
+            if (number != '.') {
+                String rowKey = number + " in row " + i;
+                String columnKey = number + " in column " + j;
+                String blockKey = number + " in block " + (i / 3) + "-" + (j / 3);
+
+                if (!seen.add(rowKey) || !seen.add(columnKey) || !seen.add(blockKey)) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+}
 
 // Coding Ninjas 
 // you need to find out wheather there exists a way  to fill all the empty cells  with some digit 1 - 9 such that the final solution will be valid sudoku
