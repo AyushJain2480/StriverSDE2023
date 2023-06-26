@@ -14,6 +14,8 @@ public class Solution
 				list.add(ele);
 			}
 		}
+				// List<Integer> list = matrix.stream().flatMap(List::stream).collect(Collectors.toList());
+
 	  Collections.sort(list);
 		int i = 0;
 		int j = list.size() - 1;
