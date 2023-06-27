@@ -42,7 +42,7 @@ public class Solution
 	{
 		int lo = 1;
 		int hi = 1000000000;
-        int n = A.size();
+                int n = A.size();
 		int m = A.get(0).size();
 
 		while(lo <= hi){
