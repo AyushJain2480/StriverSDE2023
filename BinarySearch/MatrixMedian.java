@@ -31,6 +31,9 @@ public class Solution
 //  if cnt <= (n * m) / 2 --> low + 1 else hi - 1
 // dono side barabar elements chahiye agar chote elements (n * m) / 2 se jyda hojay to  [5 smaller than mid] person and n * m /2 is 4 means 4 hone chahiye the 
 // left me to move the person back side so that we can equal the elements both side 
+// APplying binary search 2 times here 
+// 1 BS - target - assumed median 
+// 2 BS - no of elements less than mid
 
 import java.util.ArrayList;
 import java.util.List;
