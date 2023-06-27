@@ -48,36 +48,32 @@ return arr.stream().reduce(0, (a,b) -> (a^b));
 
 
 // Better and optimised approach using binary search 
+// this is working on both leetcode and coding ninjas
 
- public static int singleNonDuplicate(ArrayList<Integer> arr)
-    { 
-        int n = arr.size();
-        if(n == 1) return arr.get(0);
-        if(arr.get(0) != arr.get(1)) return arr.get(0);
-        if(arr.get(n - 1) != arr.get(n - 2)) return arr.get(n - 1);
+class Solution{
+    public int singleNonDuplicate(int[] arr){
+    int n=arr.length;
 
+    if(n==1)return arr[0];
 
-        int lo = 1;
-        int hi = n - 2;
+    if(arr[0]!=arr[1])return arr[0];
 
-        while(lo <= hi){
-           int mid = (lo + hi) / 2;
-           if(arr.get(mid) != arr.get(mid - 1) && arr.get(mid) != arr.get(mid + 1)){
-               return arr.get(mid);
-           }
-           if(mid % 2 == 0){
-                if(arr.get(mid) == arr.get(mid + 1)){
-                    hi = mid - 1;
-                }else if(arr.get(mid) == arr.get(mid - 1)){
-                    lo = mid + 1;
-                }
-           }else{
-               if(arr.get(mid) == arr.get(mid - 1)){
-                   lo = mid + 1;
-               }else if(arr.get(mid) == arr.get(mid + 1)){
-                   hi = mid - 1;
-               }
-           }
+    if(arr[n-1]!=arr[n-2])return arr[n-1];
+
+    int low=1,high=n-2;
+
+    while(low<=high){
+
+        int mid=low+(high-low)/2;
+
+        if(arr[mid]!=arr[mid+1] && arr[mid]!=arr[mid-1])return arr[mid];
+
+        if((mid%2==1 && arr[mid-1]==arr[mid]) || (mid%2==0 && arr[mid]==arr[mid+1])){
+            low=mid+1;
+        }else{
+            high=mid-1;
         }
-        return -1;
     }
+    return -1;
+    }
+}
