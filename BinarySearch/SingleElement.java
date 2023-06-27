@@ -1,3 +1,27 @@
+public static int singleNonDuplicate(ArrayList<Integer> arr)
+    { 
+        if(arr.size() == 1)return arr.get(0);
+
+        for(int i = 0; i < arr.size(); i++){
+            if(i == 0){
+               if(arr.get(i) != arr.get(i + 1)){
+                   return arr.get(i);
+               }
+            }else if(i == arr.size() - 1){
+               if(arr.get(i) != arr.get(i - 1)){
+                   return arr.get(i);
+               }
+            }else{
+               if(arr.get(i) != arr.get(i + 1) && arr.get(i) != arr.get(i - 1)){
+                   return arr.get(i);
+               }
+            }
+        }
+        return -1;
+    }
+
+
+
 import java.util.ArrayList;
 public class Solution
 {
@@ -16,3 +40,6 @@ public class Solution
         
     }
 }
+
+
+return arr.stream().reduce(0, (a,b) -> (a^b));
