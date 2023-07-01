@@ -23,7 +23,7 @@ public class Solution {
 		}
 		int kthSmall = 0 , kthLarge = 0;
 		int s = 1, l = n;
-
+	// remove n elements k times --> O(nlogk)
 		while(!minHeap.isEmpty()){
 			int pol = minHeap.poll(); // take O(logk)
 			if(s == k || l == k){
