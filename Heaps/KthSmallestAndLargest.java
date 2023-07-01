@@ -1,3 +1,6 @@
+// THree ways we can solve this problem using sorting that wil take O(nlogn) time
+// using Priority queue that will take O(nlogk) time 
+// using quick select algo that will take O(n) time.
 import java.util.*;
 public class Solution {
 	public static ArrayList<Integer> kthSmallLarge(ArrayList<Integer> arr, int n, int k) {
@@ -57,6 +60,56 @@ class Solution {
         }
         
         return heap.peek();
+    }
+}
+
+// FUll O(n) solution using quickselect kth largest and kth smalllest element
+
+import java.util.*;
+public class Solution {
+	public static ArrayList<Integer> kthSmallLarge(ArrayList<Integer> arr, int n, int k) {
+		ArrayList<Integer> list = new ArrayList<>();
+		Integer[] nums = arr.toArray(new Integer[0]);
+        int kthLargest = findKthLargest(nums, k);
+		int kthSmallest = findKthSmallest(nums, k);
+        list.add(kthSmallest);
+		list.add(kthLargest);
+		return list;
+	}
+	public static int findKthLargest(Integer[] nums, int k) {
+        int start = 0, end = nums.length - 1, index = nums.length - k;
+        while (start < end) {
+            int pivot = partion(nums, start, end);
+            if (pivot < index) start = pivot + 1; 
+            else if (pivot > index) end = pivot - 1;
+            else return nums[pivot];
+        }
+        return nums[start];
+    }
+	public static int findKthSmallest(Integer[] nums, int k) {
+        int start = 0, end = nums.length - 1, index = k - 1;
+        while (start < end) {
+            int pivot = partion(nums, start, end);
+            if (pivot < index) start = pivot + 1; 
+            else if (pivot > index) end = pivot - 1;
+            else return nums[pivot];
+        }
+        return nums[start];
+    }
+	public static int partion(Integer[] nums, int start, int end) {
+        int pivot = start, temp;
+        while (start <= end) {
+            while (start <= end && nums[start] <= nums[pivot]) start++;
+            while (start <= end && nums[end] > nums[pivot]) end--;
+            if (start > end) break;
+            temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+        }
+        temp = nums[end];
+        nums[end] = nums[pivot];
+        nums[pivot] = temp;
+        return end;
     }
 }
 
