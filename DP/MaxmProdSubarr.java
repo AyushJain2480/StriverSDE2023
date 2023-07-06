@@ -8,7 +8,7 @@ public class Solution {
 		int prod = 1;
 
 		for(int i = 0; i < arr.size(); i++){
-      prod *= arr.get(i);
+                        prod *= arr.get(i);
 			maxProd = Math.max(maxProd,prod);
 			if(prod == 0){
 				prod = 1;
