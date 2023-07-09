@@ -19,3 +19,40 @@ class Solution {
         }
     }
 }
+
+// coding ninjas
+import java.util.ArrayList;
+
+public class Solution {
+    public static ArrayList<ArrayList<Integer>> depthFirstSearch(int v, int e, ArrayList<ArrayList<Integer>> edges) {
+        int[][] adj_matrix = new int[v][v];
+        for(int i = 0; i < e; i++){
+            ArrayList<Integer> edge = edges.get(i);
+            int sv = edge.get(0);
+            int ev = edge.get(1);
+            adj_matrix[sv][ev] = 1;
+            adj_matrix[ev][sv] = 1;
+        }
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        boolean[] visited = new boolean[v];
+        for(int i = 0; i < v; i++){
+            if(visited[i] == false){
+            ArrayList<Integer> l = new ArrayList<>();
+            dfs(i,visited,adj_matrix, l);
+            ans.add(l);
+            }
+        }
+        return ans;
+    }
+
+    public static void dfs(int sv, boolean[] visited, int[][] adj_matrix,ArrayList<Integer> list){
+       list.add(sv);
+       visited[sv] = true;
+
+       for(int i = 0; i < visited.length; i++){
+           if(visited[i] == false && adj_matrix[sv][i] == 1){
+              dfs(i,visited,adj_matrix,list);
+           }
+       }
+    }
+}
