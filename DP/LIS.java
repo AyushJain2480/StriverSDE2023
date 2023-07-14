@@ -18,3 +18,18 @@ public class Solution {
                 return ans;
 	}
 }
+
+// Longest Arithmetic Subsequence of Given Difference
+class Solution {
+   public int longestSubsequence(int[] arr, int diff){
+       int maxList = 0;
+       HashMap<Integer,Integer> arithList = new HashMap<>();
+       for(int a : arr){
+           int prevListLength = arithList.getOrDefault(a - diff,0);
+           int newListFora = prevListLength + 1;
+           arithList.put(a, newListFora);
+           maxList = Math.max(maxList, newListFora);
+       }
+       return maxList;
+   }
+}
