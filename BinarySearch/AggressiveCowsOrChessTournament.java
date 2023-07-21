@@ -35,6 +35,47 @@ public class Solution {
 }
 
 // optimised..
+import java.util.*;
+public class Solution {
+    public static int aggressiveCows(int[] A, int cows) {
+       Arrays.sort(A);
+       
+       int lo = 1;
+       int hi = A[A.length - 1] - A[0];
+       int ans = 0;
+
+       while(lo <= hi){
+        int mid = (lo + hi)/2; 
+        if(canWePlace(A, cows, mid)){ // if mid is the possible min dist try to find the max possible dist 
+          ans = mid;
+          lo = mid + 1;
+        }else{ // if its not possible to place cow with min dist mid than all r8 is discarded
+          hi = mid - 1;
+        }
+       }
+       return ans;
+    }
+
+    public static boolean canWePlace(int[] A, int cows , int dist){
+        // first cow must be at 0th pos 
+        int cowsPlaced = 1, lastCow = A[0];
+
+        // placing other cows
+        for(int i = 1; i < A.length; i++){
+            if(A[i] - lastCow >= dist){
+                cowsPlaced++;
+                lastCow = A[i];
+            }
+            if(cowsPlaced >= cows) return true;
+        }
+        return false;
+    }
+}
+
+
+
+
+
 
 import java.util.* ;
 import java.io.*; 
